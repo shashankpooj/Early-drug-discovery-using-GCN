@@ -1,0 +1,4 @@
+Flask
+torch
+torch-geometric
+rdkit
