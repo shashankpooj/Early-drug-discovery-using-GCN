@@ -60,7 +60,7 @@ def predict_protein_sequence(sequence, model, k=3):
     # Create a Data object for the sequence
     features_tensor = torch.tensor(features, dtype=torch.float).view(1, -1)
     # For a single sequence, there are no edges, so edge_index is an empty tensor
-    edge_index = torch.tensor([], dtype=torch.long).view(2, 0)  # No edges in a single-node graph
+    edge_index = torch.tensor(features_tensor , dtype=torch.long).view(2, 0)  # No edges in a single-node graph
     
     data = Data(x=features_tensor, edge_index=edge_index)
     
@@ -68,11 +68,12 @@ def predict_protein_sequence(sequence, model, k=3):
     model.eval()
     with torch.no_grad():
         output = model(data)
-        pred = output.argmax(dim=1)
-        confidence = F.softmax(output, dim=1).max().item()  # Confidence is the highest probability
-    
+        pred = output.argmax(dim=1).item()
+        confidence = F.softmax(output) # Confidence is the highest probability
+         
     # Return the predicted class (0 or 1) and the confidence
-    return pred.item(), confidence
+    return pred,confidence
+
 
 # HIT identification phase:
 def predict_molecule(smiles, model):
