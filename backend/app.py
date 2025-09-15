@@ -133,11 +133,39 @@ def predict_molecule(smiles, model):
     activity = "Active HIT" if pred == 1 else "Inactive (Not a HIT)"
     return activity, probability
 
-#LEAD Optimization phase:
-def LEAD_optimize(LEAD_data_path,input_molecule):
-    lead_data = load_dataset_LEAD(LEAD_data_path)
-    best_molecule, best_score, history = optimize_user_input(lead_data,input_molecule)
-    return best_molecule, best_score, history
+import random
+
+def lead_optimize(input_mol):
+    # Possible modifications to the molecule
+    modifications = ['-OH', '-COOH', '-N2']
+
+    # Initialize best molecule and its score
+    best_mol = input_mol
+    input_mol_score = QED_score(input_mol)  # Replace with actual scoring function
+
+    # Try modifications 3 times
+    for _ in range(3):
+        new_mol = best_mol + random.choice(modifications)
+        # Compute new score (QED or any scoring metric)
+        new_score = QED_score(new_mol)  # Replace with actual function
+
+        # Update best molecule if new score is better
+        if new_score > input_mol_score:
+            best_mol = new_mol
+            input_mol_score = new_score
+
+    return best_mol
+
+# Example placeholder for scoring function
+def QED_score(molecule):
+    # Replace with real QED calculation
+    # Here, we just simulate a score
+    return random.uniform(0, 1)
+
+# Example usage
+optimized_molecule = lead_optimize("C1CCCCC1")  # Input molecule as SMILES
+print("Optimized molecule:", optimized_molecule)
+
 
 #ADMET phase:
 def predict_molecule_activity(smiles_input, model, tasks):
