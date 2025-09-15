@@ -156,11 +156,9 @@ def analyze_all_phases():
         hit_activity_class, probability = predict_molecule(molecule_smiles,hit_model)
         print(hit_activity_class)
         # Lead optimization (simplified for this integration)
-        best_molecule, best_score, history = LEAD_optimize(LEAD_data_path,molecule_smiles)
-        best_molecule_smiles = Chem.MolToSmiles(best_molecule)
+         best_molecule_smiles=lead_optimize(input_mol)
         print(best_molecule_smiles)
-        # ADMET predictions using the ADMET model
-        ADMET_prediction_results = predict_molecule_activity(best_molecule_smiles, admet_model, tasks)
+        
 
         detail_ADMET_output = generate_admet_output(ADMET_prediction_results)
         # Consolidate results
