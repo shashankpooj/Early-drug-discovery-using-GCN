@@ -12,7 +12,7 @@ class TargetModel(nn.Module):
         self.conv2 = GCNConv(hidden_dim, hidden_dim)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
-  
+        return conv1,conv2
 
 
 class HitModel(nn.Module):
@@ -22,7 +22,7 @@ class HitModel(nn.Module):
         self.conv2 = GCNConv(hidden_dim, hidden_dim)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
-
+         return conv1,conv2
 
 class ADMETModel(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim=5):  # ADMET properties
@@ -31,4 +31,4 @@ class ADMETModel(nn.Module):
         self.conv2 = GCNConv(hidden_dim, hidden_dim)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
-  
+           return conv1,conv2
