@@ -12,14 +12,7 @@ class TargetModel(nn.Module):
         self.conv2 = GCNConv(hidden_dim, hidden_dim)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
-    def forward(self, data):
-        x, edge_index, batch = data.x, data.edge_index, data.batch
-        x = F.relu(self.conv1(x, edge_index))
-        x = F.relu(self.conv2(x, edge_index))
-        x = global_mean_pool(x, batch)  # Aggregate node features into graph-level features
-        x = self.fc(x)  # Predict logits for each graph
-        return x
-
+  
 
 
 class HitModel(nn.Module):
@@ -29,12 +22,6 @@ class HitModel(nn.Module):
         self.conv2 = GCNConv(hidden_dim, hidden_dim)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
-    def forward(self, data):
-        x, edge_index = data.x, data.edge_index
-        x = F.relu(self.conv1(x, edge_index))
-        x = F.relu(self.conv2(x, edge_index))
-        x = self.fc(x)
-        return x
 
 
 class ADMETModel(nn.Module):
@@ -44,9 +31,4 @@ class ADMETModel(nn.Module):
         self.conv2 = GCNConv(hidden_dim, hidden_dim)
         self.fc = nn.Linear(hidden_dim, output_dim)
 
-    def forward(self, data):
-        x, edge_index = data.x, data.edge_index
-        x = F.relu(self.conv1(x, edge_index))
-        x = F.relu(self.conv2(x, edge_index))
-        x = self.fc(x)
-        return x
+  
