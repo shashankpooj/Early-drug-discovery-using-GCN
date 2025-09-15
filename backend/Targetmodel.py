@@ -2,8 +2,7 @@ import torch.nn as nn
 from torch_geometric.nn import GCNConv
 import torch.nn.functional as F
 from torch_geometric.nn import global_mean_pool
-import tensorflow as tf
-from tensorflow import keras
+
 
 
 class TargetModel(nn.Module):
