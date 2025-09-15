@@ -105,8 +105,8 @@ def predict_molecule(smiles, model):
     
     # Generate molecular fingerprint
     fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)
-    arr = torch.zeros((1, 2048), dtype=torch.float)
-    DataStructs.ConvertToNumpyArray(fp, arr.numpy())
+   
+    arr=DataStructs.ConvertToNumpyArray(fp.numpy())
     
     # Create a PyTorch Geometric Data object for the molecule
     x = arr
@@ -120,7 +120,7 @@ def predict_molecule(smiles, model):
     
     # Create a data object
     data = Data(x=x, edge_index=edge_index)
-    data = data.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+ 
     
     # Predict using the model
     model.eval()
