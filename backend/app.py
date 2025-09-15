@@ -33,9 +33,9 @@ kmer_vocab_file = '/Users/pavandevl/Desktop/Early_ddrug/data/kmer_vocab.txt'
 
 # Assuming paths to pre-trained models are updated
 try:
-    target_model = load_model(TargetModel, "/Users/pavandevl/Desktop/Early_ddrug/data/saved_models/target_model.pth", input_dim=input_dim_target, hidden_dim=hidden_dim_target)
-    hit_model = load_model(HitModel, "/Users/pavandevl/Desktop/Early_ddrug/data/saved_models/hit_model.pth", input_dim=input_dim_hit, hidden_dim=hidden_dim_hit)
-    admet_model_dir = "/Users/pavandevl/Desktop/Early_ddrug/data/saved_models/ADMETpredict"
+    target_model = load_model(TargetModel, "/Users/shashank/Desktop/Early_ddrug/data/saved_models/target_model.pth", input_dim=input_dim_target, hidden_dim=hidden_dim_target)
+    hit_model = load_model(HitModel, "/Users/shashank/Desktop/Early_ddrug/data/saved_models/hit_model.pth", input_dim=input_dim_hit, hidden_dim=hidden_dim_hit)
+    admet_model_dir = "/Users/shashank/Desktop/Early_ddrug/data/saved_models/ADMETpredict"
     admet_model = dc.deepchem.models.GraphConvModel(
         n_tasks=12,
         mode='classification',
@@ -46,7 +46,7 @@ try:
 except Exception as e:
     print(f"Error loading models: {e}")
 
-LEAD_data_path = '/Users/pavandevl/Desktop/Early_ddrug/data/250k_rndm_zinc_drugs_clean_3.csv'
+LEAD_data_path = '/Users/shashank/Desktop/Early_ddrug/data/250k_rndm_zinc_drugs_clean_3.csv'
 def load_dataset_LEAD(file_path):
     df = pd.read_csv(file_path)
     smiles_list = df['smiles']  # Replace 'smiles' with the column name containing SMILES strings
@@ -56,7 +56,7 @@ def load_tasks(filename="tasks.pkl"):
   with open(filename, "rb") as f:
     return pickle.load(f)
 
-tasks = load_tasks('/Users/pavandevl/Desktop/Early_ddrug/data/tasks.pkl')
+tasks = load_tasks('/Users/shashank/Desktop/Early_ddrug/data/tasks.pkl')
 
 # Target identification Phase:
 def kmer_count(sequence, k=3):
