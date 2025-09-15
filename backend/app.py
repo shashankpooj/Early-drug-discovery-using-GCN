@@ -32,9 +32,9 @@ hidden_dim_admet = 128
 kmer_vocab_file = '/Users/shashank/Desktop/Early_ddrug/data/kmer_vocab.txt'
 
 # Assuming paths to pre-trained models are updated
-try:
-    target_model = load_model(TargetModel, "/Users/shashank/Desktop/Early_ddrug/data/saved_models/target_model.pth", input_dim=input_dim_target, hidden_dim=hidden_dim_target)
-    hit_model = load_model(HitModel, "/Users/shashank/Desktop/Early_ddrug/data/saved_models/hit_model.pth", input_dim=input_dim_hit, hidden_dim=hidden_dim_hit)
+
+target_model = load_model(TargetModel, "/Users/shashank/Desktop/Early_ddrug/data/saved_models/target_model.pth", input_dim=input_dim_target, hidden_dim=hidden_dim_target)
+hit_model = load_model(HitModel, "/Users/shashank/Desktop/Early_ddrug/data/saved_models/hit_model.pth", input_dim=input_dim_hit, hidden_dim=hidden_dim_hit)
     
 
 # Target identification Phase:
