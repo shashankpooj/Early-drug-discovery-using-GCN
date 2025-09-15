@@ -29,7 +29,7 @@ input_dim_hit = 2048
 hidden_dim_hit = 128
 input_dim_admet = 1024
 hidden_dim_admet = 128
-kmer_vocab_file = '/Users/pavandevl/Desktop/Early_ddrug/data/kmer_vocab.txt'
+kmer_vocab_file = '/Users/shashank/Desktop/Early_ddrug/data/kmer_vocab.txt'
 
 # Assuming paths to pre-trained models are updated
 try:
