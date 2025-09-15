@@ -156,15 +156,6 @@ def lead_optimize(input_mol):
 
     return best_mol
 
-# Example placeholder for scoring function
-def QED_score(molecule):
-    # Replace with real QED calculation
-    # Here, we just simulate a score
-    return random.uniform(0, 1)
-
-# Example usage
-optimized_molecule = lead_optimize("C1CCCCC1")  # Input molecule as SMILES
-print("Optimized molecule:", optimized_molecule)
 
 
 #ADMET phase:
