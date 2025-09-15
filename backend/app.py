@@ -159,50 +159,7 @@ def lead_optimize(input_mol):
 
 
 #ADMET phase:
-def predict_molecule_activity(smiles_input, model, tasks):
-    """
-    Predicts the activity of a molecule given a SMILES string using the trained model.
-    
-    Parameters:
-    - smiles_input (str): The SMILES string of the molecule to be predicted.
-    - model (GraphConvModel): The trained GraphConv model.
-    - tasks (list): List of prediction tasks (e.g., ['Task1', 'Task2', ...]).
-    
-    Returns:
-    - predictions (dict): A dictionary of task names and their corresponding predicted probabilities.
-    """
-    try:
-        # Convert the SMILES string to an RDKit molecule
-        mol = Chem.MolFromSmiles(smiles_input)
-        if mol is None:
-            raise ValueError("Invalid SMILES string.")
-        
-        # Featurize the molecule using the ConvMolFeaturizer
-        featurizer = ConvMolFeaturizer()
-        mol_features = featurizer.featurize([mol])
-        
-        # Wrap the features in a NumpyDataset
-        dataset = dc.data.NumpyDataset(X=mol_features)
-        
-        # Predict the properties for the input molecule using the model
-        predictions = model.predict(dataset)
-        
-        # Ensure predictions have the correct shape
-        if len(predictions.shape) != 3 or predictions.shape[0] != 1 or predictions.shape[2] != 2:
-            raise ValueError(f"Unexpected prediction shape: {predictions.shape}")
-        
-        # Prepare the output in a dictionary format
-        prediction_results = {}
-        for i, task in enumerate(tasks):
-            # Extract the probability of the positive class (class 1)
-            prediction_results[task] = float(predictions[0, i, 1])  # Class 1 probability
-        
-        return prediction_results
-
-    except Exception as e:
-        return {"error": str(e)}
-
-@app.route('/analyze', methods=['POST'])
+# 
 def analyze_all_phases():
     try:
         data = request.get_json()
