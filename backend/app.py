@@ -117,7 +117,49 @@ import random
 
 def lead_optimize(input_mol):
     # Possible modifications to the molecule
-    modifications = ['-OH', '-COOH', '-N2']
+    modifications = [
+    '-OH',     # Hydroxyl
+    '-COOH',   # Carboxyl
+    '-NH2',    # Amino
+    '-CHO',    # Aldehyde
+    '-COR',    # Ketone
+    '-SH',     # Thiol
+    '-NO2',    # Nitro
+    '-SO3H',   # Sulfonic acid
+    '-CN',     # Cyano
+    '-Cl',     # Chloro
+    '-Br',     # Bromo
+    '-I',      # Iodo
+    '-F',      # Fluoro
+    '-OCH3',   # Methoxy
+    '-OEt',    # Ethoxy
+    '-OCF3',   # Trifluoromethoxy
+    '-CF3',    # Trifluoromethyl
+    '-CH3',    # Methyl
+    '-CH2CH3', # Ethyl
+    '-C6H5',   # Phenyl
+    '-N(CH3)2', # Dimethylamino
+    '-NHSO2CH3', # Sulfonamide
+    '-CONH2',   # Amide
+    '-CONHR',   # Secondary amide
+    '-CONR2',   # Tertiary amide
+    '-NHAc',    # Acetamide
+    '-SO2NH2',  # Sulfonamide
+    '-PO3H2',   # Phosphate
+    '-OP(O)(OH)2', # Phosphonic acid
+    '-SMe',     # Methylthio
+    '-SEt',     # Ethylthio
+    '-N3',      # Azide
+    '-N2',      # Diazo
+    '-C=CH2',   # Vinyl
+    '-C≡CH',    # Ethynyl
+    '-C(OH)CH3', # Hydroxymethyl
+    '-C(O)OCH3', # Ester (methyl ester)
+    '-C(O)OEt',  # Ester (ethyl ester)
+    '-C(O)Ph',   # Aryl ester
+    '-C(O)NH2'   # Primary amide (duplicate of -CONH2, but useful separately)
+]
+
 
     # Initialize best molecule and its score
     best_mol = input_mol
